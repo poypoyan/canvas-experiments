@@ -2,9 +2,6 @@
    by: poypoyan */
 
 // helper functions
-function randomElementInSet(inputSet){
-    return [...inputSet][Math.floor(Math.random() * inputSet.size)];
-}
 function randomElementInArr(inputArr){
     return inputArr[Math.floor(Math.random() * inputArr.length)];
 }
@@ -19,9 +16,9 @@ function wilsonStart(vertices, verticesFinal){   // run once
     let data = {'temp': new Array(), 'currVert': null};
     // let data = {'temp': new Array(), 'currVert': null, 'prevEdge': null};
     // make a random vertex final
-    let firstVert = randomElementInSet(vertices);
-    vertices.delete(firstVert);
-    verticesFinal.add(firstVert);
+    let firstVert = randomElementInArr(vertices);
+    vertices.splice(vertices.indexOf(firstVert), 1);   // remove one specified element in array
+    verticesFinal.push(firstVert);
     update[0].push(firstVert);
     return [update, data];
 }
@@ -30,7 +27,7 @@ function wilsonLoop(data, vertices, verticesFinal){   // run inside loop
 
     if(!data['temp'].length){
         // make another random vertex temporary
-        let newVert = randomElementInSet(vertices);
+        let newVert = randomElementInArr(vertices);
         data['temp'].push(newVert);
         data['currVert'] = newVert;
         update[2].push(newVert);
@@ -40,13 +37,13 @@ function wilsonLoop(data, vertices, verticesFinal){   // run inside loop
         update[0].push.apply(update[0], data['temp'].slice(sliceIdxVert, -1));
         // revert the temp vertices to left vertices of currVert
         data['temp'].splice(sliceIdxVert);
-    } else if(verticesFinal.has(data['currVert'])){
-        // add the temp vertices to verticesFinal
-        newFinalVerts = data['temp'].filter((cell, idx) => {return idx % 2 == 0 || idx != data['temp'] - 1;});
+    } else if(verticesFinal.includes(data['currVert'])){
+        // make temp vertices final
+        update[1].push.apply(update[1], data['temp']);
+        newFinalVerts = data['temp'].filter((cell, idx) => {return idx % 2 == 0 && idx != data['temp'].length - 1;});
         newFinalVerts.forEach((cell) => {
-            update[1].push(cell);
-            vertices.delete(cell);
-            verticesFinal.add(cell);
+            vertices.splice(vertices.indexOf(cell), 1);
+            verticesFinal.push(cell);
         });
         data['temp'] = new Array();
     } else {
@@ -60,7 +57,6 @@ function wilsonLoop(data, vertices, verticesFinal){   // run inside loop
         data['temp'].push.apply(data['temp'], newEdgeVert);
         data['currVert'] = newEdgeVert[1];
         // data['prevEdge'] = newEdgeVert[0];
-        update[1].push.apply(update[1], newEdgeVert);
         update[2].push.apply(update[2], newEdgeVert);
     }
     return update;

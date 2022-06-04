@@ -38,14 +38,17 @@ function fillCell(color, idx){
 
 // create graph
 // derive (initial) vertex indices (should be empty after algorithm completion)
-let vertices = new Set();
+let vertices = new Array();
 for(let i = 0; i < vertexX; i++){
     for(let j = 0; j < vertexY; j++){
-        vertices.add(2 * (cellsY * i + j));
+        vertices.push(2 * (cellsY * i + j));
     }
 }
 // initialize finalized vertices (should be full after algorithm completion)
-let verticesFinal = new Set();
+let verticesFinal = new Array();
+
+// note: vertices and verticesFinal should not have duplicates (i.e. Set-like)
+// but are set to Arrays for more flexible use by the algorithm.
 
 // derive graph traversal structure for maze generation algorithm
 // structure: {<vertex index>: [[<connecting edge index>, <other vertex connected to that edge>], ...], ...}
@@ -75,5 +78,5 @@ function reDraw(algoData, algoLoop){
     updateCells[0].forEach((vertex) => {fillCell(backColor, vertex);});
     updateCells[1].forEach((vertex) => {fillCell(frontColor, vertex);});
     updateCells[2].forEach((vertex) => {fillCell(extColor1, vertex);});
-    if(vertices.size) setTimeout(() => {reDraw(algoData, algoLoop)}, animateDelay);
+    if(vertices.length) setTimeout(() => {reDraw(algoData, algoLoop)}, animateDelay);
 }
