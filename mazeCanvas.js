@@ -11,7 +11,7 @@ const vertexX = 20,
     extColor1 = '#5588ee';
 
 // number of cell width (X) and height (Y)
-let cellsX = 2 * vertexX - 1,
+const cellsX = 2 * vertexX - 1,
     cellsY = 2 * vertexY - 1;
 
 // create canvas
@@ -36,7 +36,6 @@ function fillCell(color, idx){
     ctxCell.fillRect(cellPixel * (idx % cellsX), cellPixel * Math.floor(idx / cellsY), cellPixel, cellPixel);
 }
 
-// create graph
 // derive (initial) vertex indices (should be empty after algorithm completion)
 let vertices = new Array();
 for(let i = 0; i < vertexX; i++){
@@ -44,6 +43,7 @@ for(let i = 0; i < vertexX; i++){
         vertices.push(2 * (cellsY * i + j));
     }
 }
+
 // initialize finalized vertices (should be full after algorithm completion)
 let verticesFinal = new Array();
 
@@ -53,7 +53,7 @@ let verticesFinal = new Array();
 // derive graph traversal structure for maze generation algorithm
 // structure: {<vertex index>: [[<connecting edge index>, <other vertex connected to that edge>], ...], ...}
 // type: map of int to array of pairs.
-let ctxNum = cellsX * cellsY;
+const ctxNum = cellsX * cellsY;
 let graphStruct = new Map();
 vertices.forEach((vertex) => {
     graphStruct.set(vertex, new Array());

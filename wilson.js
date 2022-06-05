@@ -14,7 +14,6 @@ function wilsonStart(vertices, verticesFinal){   // run once
     let update = [new Array(), new Array()];   // [0]: on, [1]: temp
     // custom data of algorithm
     let data = {'temp': new Array(), 'currVert': null};
-    // let data = {'temp': new Array(), 'currVert': null, 'prevEdge': null};
     // make a random vertex final
     let firstVert = randomElementInArr(vertices);
     vertices.splice(vertices.indexOf(firstVert), 1);   // remove one specified element in array
@@ -49,14 +48,8 @@ function wilsonLoop(data, vertices, verticesFinal){   // run inside loop
     } else {
         // traverse through random edge and next vertex of currVert
         let newEdgeVert = randomElementInArr(graphStruct.get(data['currVert']));
-        // let newEdgeVert = randomElementInArr(
-        //     graphStruct.get(data['currVert']).filter((pair) => {   // ...not the just traversed edge
-        //         return pair[0] != data['prevEdge'];
-        //     })
-        // );
         data['temp'].push.apply(data['temp'], newEdgeVert);
         data['currVert'] = newEdgeVert[1];
-        // data['prevEdge'] = newEdgeVert[0];
         update[2].push.apply(update[2], newEdgeVert);
     }
     return update;
