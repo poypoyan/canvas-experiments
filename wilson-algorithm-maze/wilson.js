@@ -10,8 +10,8 @@ function includedButNotLast(inputArr, element){
 }
 
 // algorithm proper
-function wilsonStart(vertices, verticesFinal){   // run once
-    let update = [new Array(), new Array()];   // [0]: on, [1]: temp
+function wilsonStart(vertices, verticesFinal, graphStruct){   // run once
+    let update = [new Array()];   // [0]: on
     // custom data of algorithm
     let data = {'temp': new Array(), 'currVert': null};
     // make a random vertex final
@@ -21,7 +21,7 @@ function wilsonStart(vertices, verticesFinal){   // run once
     update[0].push(firstVert);
     return [update, data];
 }
-function wilsonLoop(data, vertices, verticesFinal){   // run inside loop
+function wilsonLoop(data, vertices, verticesFinal, graphStruct){   // run inside loop
     let update = [new Array(), new Array(), new Array()];   // [0]: off, [1]: on, [2]: temp
 
     if(!data['temp'].length){
