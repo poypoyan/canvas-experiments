@@ -27,7 +27,7 @@ let canvasObj_ = createCanvasObj(vertexX_, vertexY_, cellPixel_,
                                  animateDelay_, colorsObj_.backColor, domLocation_);
 
 // handle click boilerplate
-document.getElementById(buttonId_).onclick = function(){
+document.getElementById(buttonId_).onclick = () => {
     if(canvasObj_.justEvented) return;
 
     if(canvasObj_.running){

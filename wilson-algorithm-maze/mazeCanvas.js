@@ -1,7 +1,7 @@
 /* Rectangular Maze Canvas
    by: poypoyan */
 
-function createCanvasObj(vertexX, vertexY, cellPixel, animateDelay, initColor, domLocation) {
+function createCanvasObj(vertexX, vertexY, cellPixel, animateDelay, borderColor, domLocation){
     // derive cell width (X), cell height (Y), and number of all cells
     const cellsX = 2 * vertexX - 1,
     cellsY = 2 * vertexY - 1,
@@ -37,7 +37,7 @@ function createCanvasObj(vertexX, vertexY, cellPixel, animateDelay, initColor, d
     const canvas = document.createElement('canvas');
     canvas.width = cellsX * cellPixel;
     canvas.height = cellsY * cellPixel;
-    canvas.style = 'border: 3px solid ' + initColor;
+    canvas.style = 'border: 3px solid ' + borderColor;
     canvas.innerHTML = 'Your browser does not support the canvas element.';
     document.body.insertBefore(canvas, domLocation);
 
