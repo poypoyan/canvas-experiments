@@ -1,4 +1,4 @@
 # canvas-svg-experiments
-My experiments in Canvas and SVG in HTML and JS
+My experiments in Canvas and SVG HTML
 
-There are just cool ideas (I think) that I learned or discovered. Enjoy! 😊
+These are just small but cool ideas (I think) that I learned or discovered. Enjoy! 😊
