@@ -1,4 +1,4 @@
-# impossible-rod
+# self-similar-impossible-rod
 A self-similar impossible object in SVG:
 
 ![Image of Impossible Rod](./impossible-rod.png)
