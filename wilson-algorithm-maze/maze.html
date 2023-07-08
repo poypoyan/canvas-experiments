@@ -30,9 +30,9 @@ let canvasObj_ = createCanvasObj(vertexX_, vertexY_, cellPixel_,
 document.getElementById(buttonId_).onclick = () => {
     if(canvasObj_.justEvented) return;
 
-    if(canvasObj_.running){
+    if(canvasObj_.running) {
         canvasObj_.running = false;   // re-initialization happens at reDraw()
-    } else if (!canvasObj_.running){
+    } else if (!canvasObj_.running) {
         initDraw(canvasObj_, colorsObj_, wilsonStart, wilsonLoop);
     }
 

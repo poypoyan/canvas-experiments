@@ -1,7 +1,7 @@
 /* Rectangular Maze Canvas
    by: poypoyan */
 
-function createCanvasObj(vertexX, vertexY, cellPixel, animateDelay, borderColor, domLocation){
+function createCanvasObj(vertexX, vertexY, cellPixel, animateDelay, borderColor, domLocation) {
     // derive cell width (X), cell height (Y), and number of all cells
     const cellsX = 2 * vertexX - 1,
     cellsY = 2 * vertexY - 1,
@@ -9,8 +9,8 @@ function createCanvasObj(vertexX, vertexY, cellPixel, animateDelay, borderColor,
 
     // initialize vertex indices (should be empty after algorithm completion)
     let vertices = new Array();
-    for(let i = 0; i < vertexX; i++){
-        for(let j = 0; j < vertexY; j++){
+    for(let i = 0; i < vertexX; i++) {
+        for(let j = 0; j < vertexY; j++) {
             vertices.push(2 * (cellsY * i + j));
         }
     }
@@ -58,7 +58,7 @@ function createCanvasObj(vertexX, vertexY, cellPixel, animateDelay, borderColor,
 }
 
 // background fill. can also be used for clearing canvas
-function clearCanvas(canvasObj, color){
+function clearCanvas(canvasObj, color) {
     const canvas = canvasObj.canvas;
 
     const ctxBack = canvas.getContext('2d');
@@ -67,7 +67,7 @@ function clearCanvas(canvasObj, color){
 }
 
 // cell fill
-function fillCell(canvasObj, color, idx){
+function fillCell(canvasObj, color, idx) {
     const canvas = canvasObj.canvas,
         cellsX= canvasObj.cellsX,
         cellsY = canvasObj.cellsY,
@@ -79,7 +79,7 @@ function fillCell(canvasObj, color, idx){
 }
 
 // animation functions
-function initDraw(canvasObj, colorsObj, algoStart, algoLoop){
+function initDraw(canvasObj, colorsObj, algoStart, algoLoop) {
     const graphStruct = canvasObj.graphStruct;
 
     // initialize maze generation
@@ -97,7 +97,7 @@ function initDraw(canvasObj, colorsObj, algoStart, algoLoop){
     reDraw(canvasObj, colorsObj, algoData, algoStart, algoLoop);
 }
 
-function reDraw(canvasObj, colorsObj, algoData, algoStart, algoLoop){
+function reDraw(canvasObj, colorsObj, algoData, algoStart, algoLoop) {
     const animateDelay = canvasObj.animateDelay,
         graphStruct = canvasObj.graphStruct;
 
@@ -111,9 +111,9 @@ function reDraw(canvasObj, colorsObj, algoData, algoStart, algoLoop){
     updateCells[1].forEach((vertex) => {fillCell(canvasObj, frontColor, vertex);});
     updateCells[2].forEach((vertex) => {fillCell(canvasObj, extraColor, vertex);});
 
-    if (!canvasObj.running){
+    if (!canvasObj.running) {
         initDraw(canvasObj, colorsObj, algoStart, algoLoop);
-    } else if(canvasObj.vertices.length){
+    } else if(canvasObj.vertices.length) {
         setTimeout(() => {reDraw(canvasObj, colorsObj, algoData, algoStart, algoLoop)}, animateDelay);
     } else {
         canvasObj.running = false;
