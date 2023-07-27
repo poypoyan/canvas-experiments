@@ -1,5 +1,10 @@
-/* Wilson's algorithm
-   by: poypoyan */
+/*
+Wilson's algorithm
+by poypoyan
+
+Distributed under the MIT software license. See the accompanying
+file LICENSE or https://opensource.org/license/mit/.
+*/
 
 // helper functions
 function randomElementInArr(inputArr) {
@@ -54,3 +59,4 @@ function wilsonLoop(data, vertices, verticesFinal, graphStruct) {   // run insid
     }
     return update;
 }
+

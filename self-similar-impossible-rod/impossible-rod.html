@@ -1,3 +1,7 @@
+<!--
+Distributed under the MIT software license. See the accompanying
+file LICENSE or https://opensource.org/license/mit/.
+-->
 <!doctype html>
 <html>
 <head>
@@ -11,7 +15,7 @@ function polar(x, y, r, angle) {
     return [x1, y1];
 }
 
-function drawLine(svg, x1, y1, x2, y2, line_color='blue', line_width='2') {
+function draw_line(svg, x1, y1, x2, y2, line_color='blue', line_width='2') {
     svg.append('line')
         .style('stroke', line_color)
         .style('stroke-width', line_width)
@@ -25,24 +29,24 @@ function fractal(svg, x, y, deg, width, prop, qrop, n_iter, iter = 0) {
     let coord0 = polar(x, y, width, deg + 60);
     let coord1 = polar(x, y, width, deg - 60);
     if (iter == 0) {
-        drawLine(svg, x, y, coord0[0], coord0[1]);
-        drawLine(svg, x, y, coord1[0], coord1[1]);
+        draw_line(svg, x, y, coord0[0], coord0[1]);
+        draw_line(svg, x, y, coord1[0], coord1[1]);
     }
     let coord2 = polar(coord0[0], coord0[1], width * prop, deg),
         coord3 = polar(x, y, width * prop, deg),
         coord4 = polar(coord1[0], coord1[1], width * prop, deg);
-    drawLine(svg, coord0[0], coord0[1], coord2[0], coord2[1]);
-    drawLine(svg, x, y, coord3[0], coord3[1]);
-    drawLine(svg, coord1[0], coord1[1], coord4[0], coord4[1]);
+    draw_line(svg, coord0[0], coord0[1], coord2[0], coord2[1]);
+    draw_line(svg, x, y, coord3[0], coord3[1]);
+    draw_line(svg, coord1[0], coord1[1], coord4[0], coord4[1]);
     let coord5 = polar(coord4[0], coord4[1], width, deg);
-    drawLine(svg, coord4[0], coord4[1], coord5[0], coord5[1]);
+    draw_line(svg, coord4[0], coord4[1], coord5[0], coord5[1]);
     let coord6 = polar(coord3[0], coord3[1], width * (qrop + 1), deg + 60),
         coord7 = polar(coord4[0], coord4[1], width * (qrop + 2), deg + 60),
         coord8 = polar(coord5[0], coord5[1], width * (qrop + 0.5), deg + 60);
-    drawLine(svg, coord3[0], coord3[1], coord6[0], coord6[1]);
-    drawLine(svg, coord4[0], coord4[1], coord7[0], coord7[1]);
-    drawLine(svg, coord5[0], coord5[1], coord8[0], coord8[1]);
-    drawLine(svg, coord6[0], coord6[1], coord7[0], coord7[1]);
+    draw_line(svg, coord3[0], coord3[1], coord6[0], coord6[1]);
+    draw_line(svg, coord4[0], coord4[1], coord7[0], coord7[1]);
+    draw_line(svg, coord5[0], coord5[1], coord8[0], coord8[1]);
+    draw_line(svg, coord6[0], coord6[1], coord7[0], coord7[1]);
 
     let new_prop = prop_chg(prop);
     let new_qrop = 2 * qrop - 2.5 - new_prop;   // derived
@@ -52,13 +56,13 @@ function fractal(svg, x, y, deg, width, prop, qrop, n_iter, iter = 0) {
     if (new_prop <= 0 || new_qrop <= 1 || iter == n_iter - 1) {
         let coord9 = polar(coord7[0], coord7[1], width * 2 * qrop, deg - 60),
         coord10 = polar(coord8[0], coord8[1], width * (qrop - 0.5), deg - 60);
-        drawLine(svg, coord7[0], coord7[1], coord9[0], coord9[1]);
-        drawLine(svg, coord8[0], coord8[1], coord10[0], coord10[1]);
+        draw_line(svg, coord7[0], coord7[1], coord9[0], coord9[1]);
+        draw_line(svg, coord8[0], coord8[1], coord10[0], coord10[1]);
         return;
     }
 
     let coord9 = polar(coord7[0], coord7[1], width * 1.5, deg - 60);
-    drawLine(svg, coord7[0], coord7[1], coord9[0], coord9[1]);
+    draw_line(svg, coord7[0], coord7[1], coord9[0], coord9[1]);
     fractal(svg, coord8[0], coord8[1], deg - 60, width / 2, new_prop, new_qrop, n_iter,  ++iter);
 }
 
@@ -90,3 +94,4 @@ fractal(svg, margin_hor + rod_hor_length, height / 2, 180, rod_width, rod_prop, 
 </script>
 </body>
 </html>
+

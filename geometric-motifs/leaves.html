@@ -1,0 +1,76 @@
+<!--
+Distributed under the MIT software license. See the accompanying
+file LICENSE or https://opensource.org/license/mit/.
+-->
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8"/>
+<title>Leaves</title>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+function leaf(svg, x, y, a, b, dir, fill_color, line_color='black') {
+    /*
+    dir is...
+    0 = leaf going up, points to left
+    1 = leaf going up, points to right
+    2 = leaf going down, points to left
+    3 = leaf going down, points to right
+    */
+    switch(dir) {
+        case 0:
+            points = `${x},${y} ${x + a},${y + 1.5 * a} ${x + a + b},${y + a} ${x},${y}`
+            break
+        case 1:
+            points = `${x},${y} ${x - a},${y + 1.5 * a} ${x - a - b},${y + a} ${x},${y}`
+            break
+        case 2:
+            points = `${x},${y} ${x + a},${y - 1.5 * a} ${x + a + b},${y - a} ${x},${y}`
+            break
+        case 3:
+            points = `${x},${y} ${x - a},${y - 1.5 * a} ${x - a - b},${y - a} ${x},${y}`
+            break
+    }
+
+    svg.append('polyline')
+        .attr('points',  points)
+        .style('stroke', line_color)
+        .style('fill', fill_color)
+        .style('stroke-width', 3)
+}
+function leaves(svg, x, y, a, b, iter=3, dir=0, color=['blue', 'cyan']) {
+    /*
+    dir is...
+    0 = leaves go up but draw downwards
+    1 = leaves go down but draw upwards
+    */
+    for(let i = 0; i < iter; i++) {
+        let p = i % 2
+        let q = (dir + p) % 2 // for correction for dir = 1
+        let r = 1 - 2 * dir // 0 -> 1; 1 -> -1
+        leaf(svg, x + r * p * (2 * a + b), y + r * i * 0.5 * a, a, b, 2 * dir + q,  color[q])
+    }
+}
+</script>
+</head>
+<body>
+<svg id="svg1">Your browser doesn't support SVG.</svg>
+<script>
+// initial values. editable
+const width = 719
+const height = 502
+
+const svg = d3.select('#svg1')
+    .attr('width', width)
+    .attr('height', height)
+    .style('border', '3px solid black')
+
+// for now, distances between leaves are set by eye
+leaves(svg, 0, -50, 50, 100, 23)
+leaves(svg, 373, 552, 50, 100, 23, 1)
+leaves(svg, 346, -50, 50, 100, 23)
+leaves(svg, 719, 552, 50, 100, 23, 1)
+</script>
+</body>
+</html>
+

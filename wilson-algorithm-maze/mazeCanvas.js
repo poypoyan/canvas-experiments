@@ -1,5 +1,10 @@
-/* Rectangular Maze Canvas
-   by: poypoyan */
+/*
+Rectangular Maze Canvas
+by poypoyan
+
+Distributed under the MIT software license. See the accompanying
+file LICENSE or https://opensource.org/license/mit/.
+*/
 
 function createCanvasObj(vertexX, vertexY, cellPixel, animateDelay, borderColor, domLocation) {
     // derive cell width (X), cell height (Y), and number of all cells
@@ -121,3 +126,4 @@ function reDraw(canvasObj, colorsObj, algoData, algoStart, algoLoop) {
 
     canvasObj.justEvented = false;
 }
+

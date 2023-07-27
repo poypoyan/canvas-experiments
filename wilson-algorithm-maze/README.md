@@ -9,3 +9,4 @@ It is frustrating to watch in the beginning, but Wilson's algorithm has a beauti
 Original paper: https://dl.acm.org/doi/10.1145/237814.237880
 
 Reference: https://weblog.jamisbuck.org/2011/1/20/maze-generation-wilson-s-algorithm
+
