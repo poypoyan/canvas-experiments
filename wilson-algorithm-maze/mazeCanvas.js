@@ -126,4 +126,3 @@ function reDraw(canvasObj, colorsObj, algoData, algoStart, algoLoop) {
 
     canvasObj.justEvented = false;
 }
-

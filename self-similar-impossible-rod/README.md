@@ -17,4 +17,3 @@ Note: Internet connection required when opening html file; see second link below
 My Math.SE question: https://math.stackexchange.com/questions/4563416/is-a-self-similar-impossible-rod-possible
 
 Powered by *d3.js*: https://d3js.org/
-

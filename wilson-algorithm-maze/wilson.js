@@ -59,4 +59,3 @@ function wilsonLoop(data, vertices, verticesFinal, graphStruct) {   // run insid
     }
     return update;
 }
-
