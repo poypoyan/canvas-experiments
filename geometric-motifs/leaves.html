@@ -38,6 +38,7 @@ function leaf(svg, x, y, a, b, dir, fill_color, line_color='black') {
         .style('fill', fill_color)
         .style('stroke-width', 3)
 }
+
 function leaves(svg, x, y, a, b, iter=3, dir=0, color=['blue', 'cyan']) {
     /*
     dir is...
@@ -51,10 +52,23 @@ function leaves(svg, x, y, a, b, iter=3, dir=0, color=['blue', 'cyan']) {
         leaf(svg, x + r * p * (2 * a + b), y + r * i * 0.5 * a, a, b, 2 * dir + q,  color[q])
     }
 }
+
+// source: https://stackoverflow.com/a/19885344
+function downloadSVG() {
+    let base64doc = btoa(unescape(encodeURIComponent(document.getElementById('svg1').outerHTML))),
+        a = document.createElement('a'),
+        e = new MouseEvent('click');
+
+    a.download = 'leaves.svg';
+    a.href = 'data:text/svg;base64,' + base64doc;
+    a.dispatchEvent(e);
+}
 </script>
 </head>
 <body>
 <svg id="svg1">Your browser doesn't support SVG.</svg>
+<br/>
+<button onclick="downloadSVG()">Save SVG</button>
 <script>
 // initial values. editable
 const width = 719

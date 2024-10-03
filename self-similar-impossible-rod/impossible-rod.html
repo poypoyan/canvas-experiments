@@ -70,10 +70,23 @@ function fractal(svg, x, y, deg, width, prop, qrop, n_iter, iter = 0) {
 function prop_chg(prop) {
     return prop;
 }
+
+// source: https://stackoverflow.com/a/19885344
+function downloadSVG() {
+    let base64doc = btoa(unescape(encodeURIComponent(document.getElementById('svg1').outerHTML))),
+        a = document.createElement('a'),
+        e = new MouseEvent('click');
+
+    a.download = 'rod.svg';
+    a.href = 'data:text/svg;base64,' + base64doc;
+    a.dispatchEvent(e);
+}
 </script>
 </head>
 <body>
 <svg id="svg1">Your browser doesn't support SVG.</svg>
+<br/>
+<button onclick="downloadSVG()">Save SVG</button>
 <script>
 // initial values. editable
 const n_iter = 10;   // maximum iterations
