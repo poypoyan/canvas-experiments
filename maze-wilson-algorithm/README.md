@@ -1,5 +1,5 @@
 # maze-wilson-algorithm
-Wilson's Algorithm for Maze Generation Demo
+Wilson's Algorithm for Maze Generation
 
 Video: https://youtu.be/Hy_GaNRMUuI
 
