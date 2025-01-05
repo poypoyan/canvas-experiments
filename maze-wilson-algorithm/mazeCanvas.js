@@ -13,8 +13,11 @@ function createCanvasObj(vertexX, vertexY, cellPixel, animateDelay, borderColor,
     cellsAll = cellsX * cellsY;
 
     // initialize vertex and edge indices
-    // note: vertices and edges should not have duplicates (i.e. Set-like)
+    // notes:
+    // 1) vertices and edges should not have duplicates (i.e. Set-like)
     // but is set to Arrays for more flexible use by the algorithm.
+    // 2) The algorithm must remove elements in vertices. Termination occurs
+    // when the vertices array becomes empty.
     let vertices = new Array();
     let edges = new Array();
     for (let i = 0; i < cellsY; i++) {
